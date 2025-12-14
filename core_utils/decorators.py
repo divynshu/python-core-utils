@@ -10,3 +10,17 @@ def timer(func):
         print(f"{func.__name__} took {end-start:.4f}s")
         return result
     return wrapper
+
+def retry(times=3):
+    def decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            for i in range(times):
+                try:
+                    return func(*args, **kwargs)
+                except Exception as e:
+                    print(f"Attempt {i+1} failed: {e}")
+            print("All attempts failed")
+        return wrapper
+    return decorator
+
