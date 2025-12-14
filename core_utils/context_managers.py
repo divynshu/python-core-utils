@@ -11,12 +11,13 @@ def open_file(path, mode):
 
 #timer context context
 
-from contextlib import contextmanager
-
 @contextmanager
-def open_file(path, mode):
-    f = open(path, mode)
+def timer_cm(name="Block"):
+    import time
+    start = time.time()
     try:
-        yield f
+        yield
     finally:
-        f.close()
+        end = time.time()
+        print(f"{name} took {end-start:.4f}s")
+
