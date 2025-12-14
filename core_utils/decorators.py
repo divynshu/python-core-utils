@@ -1,6 +1,8 @@
 import time
 from funtools import wraps
 
+
+#timer decorator
 def timer(func):
     @warps(func)
     def wrapper(*args,**kwargs)
@@ -10,6 +12,10 @@ def timer(func):
         print(f"{func.__name__} took {end-start:.4f}s")
         return result
     return wrapper
+
+
+
+#retry decorator
 
 def retry(times=3):
     def decorator(func):
